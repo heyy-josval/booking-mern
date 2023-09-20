@@ -4,10 +4,15 @@ const cryptr = new Cryptr(process.env.SECRET_KEY);
 const jwt = require("jsonwebtoken");
 
 const getRooms = async (req, res) => {
-   const { user } = req;
-   // console.log(user);
    try {
       const rooms = await Rooms.find({});
+
+      if (!rooms) {
+         return res.status(404).json({
+            message: "Not rooms created",
+         });
+      }
+
       console.log(rooms);
 
       return res.status(200).json(rooms);
