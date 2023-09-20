@@ -82,7 +82,7 @@ const deleteRoom = async (req, res) => {
       });
    }
 
-   const room = Rooms.findById(id);
+   const room = await Rooms.findById(id);
 
    if (!room) {
       return res.status(404).json({
