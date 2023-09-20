@@ -17,10 +17,11 @@ const getRooms = async (req, res) => {
 };
 
 const getRoom = async (req, res) => {
-   const { user, params: id } = req.params;
-   // console.log(user);
+   const { id } = req.params;
+   console.log(id);
    try {
-      const room = await Rooms.findOne({ id });
+      const room = await Rooms.findById(id);
+      console.log(room);
       if (!room) {
          return res.status(200).json({ message: "This room not exists" });
       }
@@ -73,16 +74,32 @@ const createRoom = async (req, res) => {
 };
 
 const deleteRoom = async (req, res) => {
-   const { id } = req.body;
+   const { id } = req.params;
 
    if (!id) {
       return res.status(400).json({
          message: "ID is required in the body params",
       });
    }
+
+   const room = Rooms.findById(id);
+
+   if (!room) {
+      return res.status(404).json({
+         message: "This room not exists",
+      });
+   }
+
    try {
-      await Rooms.findByIdDelete(id);
-   } catch (error) {}
+      await Rooms.findByIdAndDelete(id);
+      return res.status(200).json({
+         message: "Success, this room has been deleted!",
+      });
+   } catch (error) {
+      return res.status(500).json({
+         message: error,
+      });
+   }
 };
 
-module.exports = { getRooms, getRoom, createRoom };
+module.exports = { getRooms, getRoom, createRoom, deleteRoom };
