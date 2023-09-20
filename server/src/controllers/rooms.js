@@ -23,7 +23,7 @@ const getRoom = async (req, res) => {
       const room = await Rooms.findById(id);
       console.log(room);
       if (!room) {
-         return res.status(200).json({ message: "This room not exists" });
+         return res.status(404).json({ message: "This room not exists" });
       }
       res.status(200).json(room);
    } catch (error) {
