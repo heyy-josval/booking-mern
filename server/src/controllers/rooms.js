@@ -102,4 +102,33 @@ const deleteRoom = async (req, res) => {
    }
 };
 
-module.exports = { getRooms, getRoom, createRoom, deleteRoom };
+const updateRoom = async (req, res) => {
+   const { id } = req.params;
+
+   if (!id) {
+      return res.status(400).json({
+         message: "ID is required in the body params",
+      });
+   }
+
+   const room = await Rooms.findById(id);
+
+   if (!room) {
+      return res.status(404).json({
+         message: "This room not exists",
+      });
+   }
+
+   try {
+      await Rooms.findByIdAndUpdate(id, req.body);
+      return res.status(200).json({
+         message: "Success, this room has been updated",
+      });
+   } catch (error) {
+      return res.status(500).json({
+         message: error,
+      });
+   }
+};
+
+module.exports = { getRooms, getRoom, createRoom, deleteRoom, updateRoom };
