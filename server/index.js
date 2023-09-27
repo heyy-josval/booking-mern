@@ -1,11 +1,15 @@
-// app
 require("dotenv").config();
+const shell = require("shelljs");
 const { connectDB } = require("./src/utils");
 const app = require("./src/app");
 
-const PORT = process.env.PORT;
-
-app.listen(PORT, async () => {
+const server = app.listen(0, async () => {
+   shell.exec("clear");
    await connectDB();
-   console.log("Server running in the port", PORT);
+   console.log("\n\nServer running in the port", server.address().port);
+   console.log(
+      `To open this project click or visit: \x1b[32mhttp://localhost:${
+         server.address().port
+      }`
+   );
 });
