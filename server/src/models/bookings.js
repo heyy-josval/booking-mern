@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = mongoose.Schema({
-   firstName: { type: String, required: true },
-   lastName: { type: String, required: true },
+   user: { type: mongoose.Schema.ObjectId, required: true },
    email: { type: String, required: true },
    phone: { type: String, require: true },
    adults: { type: Number, required: true },

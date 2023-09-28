@@ -3,7 +3,7 @@ const shell = require("shelljs");
 const { connectDB } = require("./src/utils");
 const app = require("./src/app");
 
-const server = app.listen(0, async () => {
+const server = app.listen(process.env.PORT ?? 0, async () => {
    shell.exec("clear");
    await connectDB();
    console.log("\n\nServer running in the port", server.address().port);

@@ -6,6 +6,12 @@ const jwt = require("jsonwebtoken");
 const signin = async (req, res) => {
    const { username, password } = req.body;
 
+   if (!(username && password)) {
+      return res.status(400).json({
+         message: "All data is required",
+      });
+   }
+
    try {
       const existingUser = await Auth.findOne({ username });
 
@@ -22,6 +28,7 @@ const signin = async (req, res) => {
       const token = jwt.sign(
          {
             username: existingUser.username,
+            email: existingUser.email,
             id: existingUser._id,
             role: existingUser.role,
          },
@@ -36,9 +43,9 @@ const signin = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-   const { names, lastnames, username, password } = req.body;
+   const { firstNames, lastNames, username, email, password } = req.body;
 
-   if (!(names && lastnames && username && password)) {
+   if (!(firstNames && lastNames && username && email && password)) {
       return res.status(400).json({
          message: "All data is required",
       });
@@ -54,9 +61,10 @@ const signup = async (req, res) => {
       const encryptedPassword = cryptr.encrypt(password);
 
       const newUser = new Auth({
-         names,
-         lastnames,
+         firstNames,
+         lastNames,
          username,
+         email,
          password: encryptedPassword,
          role: "user",
       });
