@@ -5,6 +5,7 @@ const methodsNotAllowed = ["POST", "PUT", "DELETE"];
 
 app.use(function (req, res, next) {
    const { method, user } = req;
+   console.log(user);
    // console.log(method);
    // console.log("Time:", Date.now());
    if (!methodsNotAllowed.includes(method)) {
