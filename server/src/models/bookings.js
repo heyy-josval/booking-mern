@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = mongoose.Schema({
-   user: { type: mongoose.Schema.ObjectId, required: true },
-   email: { type: String, required: true },
-   phone: { type: String, require: true },
-   adults: { type: Number, required: true },
-   children: { type: Number },
-   startDate: { type: String, required: true },
-   endDate: { type: String, required: true },
-   room: { type: String, require: true },
-   price: { type: Number, required: true },
-   cardType: { type: String, require: true },
-   cardNum: { type: String, require: true },
-   confirmation: { type: String, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "auths" },
+  room: { type: mongoose.Schema.Types.ObjectId, ref: "rooms" },
+  phone: String,
+  adults: Number,
+  children: Number,
+  startDate: Date,
+  endDate: Date,
+  cardType: String,
+  cardNum: String,
 });
 
 const Bookings = mongoose.model("booking", bookingSchema);
