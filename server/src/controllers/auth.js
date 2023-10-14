@@ -72,10 +72,8 @@ const signup = async (req, res) => {
       const userCreated = await newUser.save();
 
       if (!userCreated) {
-         // console.log("user cannot be created");
          return res.status(500).json({ message: "User cannot be created" });
       } else {
-         // console.log("User has been created to the database");
          return res
             .status(200)
             .json({ message: "User has been created to the database" });
