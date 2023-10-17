@@ -1,5 +1,8 @@
-import Home from "./Home/Home";
-import Hotel from "./Hotel/Hotel";
-import List from "./List/List";
+import Home from "./Home";
+import Hotel from "./Hotel";
+import Hotels from "./Hotels";
+import Bookings from "./Bookings";
+import Booking from "./Booking";
+import Profile from "./Profile";
 
-export { Hotel, Home, List };
+export { Hotel, Home, Hotels, Booking, Bookings, Profile };
