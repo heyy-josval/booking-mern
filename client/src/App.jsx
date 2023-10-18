@@ -1,4 +1,4 @@
-import { Link, Route } from "wouter";
+import { Route } from "wouter";
 import {
   Home,
   Hotel,
@@ -6,21 +6,42 @@ import {
   Booking,
   Bookings,
   Profile,
+  Login,
+  Register,
 } from "./pages/allPages";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import { Container } from "@mui/material";
+import { useLocation } from "wouter";
+import BackButton from "./components/BackButton";
+
+const routes = [
+  { path: "/", component: Home },
+  { path: "/profile", component: Profile },
+  { path: "/hotels", component: Hotels },
+  { path: "/hotels/:id", component: Hotel },
+  { path: "/bookings", component: Bookings },
+  { path: "/bookings/:id", component: Booking },
+  { path: "/bookings/:id", component: Booking },
+  { path: "/login", component: Login },
+  { path: "/register", component: Register },
+];
+
+const excludeNavbar = ["/login", "/register"];
 
 export default function App() {
+  const [location, setLocation] = useLocation();
   return (
     <Container maxWidth="xl">
-      <Navbar />
-      <div className="content">
-        <Route path="/" component={Home} />
-        <Route path="/me" component={Profile} />
-        <Route path="/hotels" component={Hotels} />
-        <Route path="/hotels/:id" component={Hotel} />
-        <Route path="/bookings" component={Bookings} />
-        <Route path="/bookings/:id" component={Booking} />
+      {excludeNavbar.includes(location) ? (
+        <BackButton link="/" text="Regresar" />
+      ) : (
+        <Navbar />
+      )}
+
+      <div>
+        {routes.map(({ path, component }, pos) => {
+          return <Route path={path} component={component} key={pos} />;
+        })}
       </div>
     </Container>
   );
