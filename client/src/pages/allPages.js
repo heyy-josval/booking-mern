@@ -1,7 +1,6 @@
-// pages/index.js
 export { default as Home } from "./Home";
-export { default as Hotel } from "./Hotel";
-export { default as Hotels } from "./Hotels";
+export { default as Room } from "./Room";
+export { default as Rooms } from "./Rooms";
 export { default as Bookings } from "./Bookings";
 export { default as Booking } from "./Booking";
 export { default as Profile } from "./Profile";

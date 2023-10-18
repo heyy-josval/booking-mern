@@ -1,22 +1,19 @@
 const mongoose = require("mongoose");
 
-const roomSchema = mongoose.Schema({
-  // urlImg: { type: String, required: true },
-  title: String,
-  // titleHeader: { type: String, required: true },
-  description: String,
-  // header: { type: String, required: true },
-  // subHeader: { type: String, required: true },
-  // view: { type: String, required: true },
-  size: String,
-  adults: Number,
-  children: Number,
-  bed: String,
-  // amenities: { type: [String], required: true },
-  // subImage: { type: String, required: true },
-  rooms: Number,
-  price: mongoose.Schema.Types.Decimal128,
-}, { timestamps: true });
+const roomSchema = mongoose.Schema(
+  {
+    hotel: { type: mongoose.Schema.Types.ObjectId, ref: "hotels" },
+    title: String,
+    description: String,
+    size: String,
+    price: mongoose.Schema.Types.Decimal128,
+    rooms: Number,
+    adults: Number,
+    children: Number,
+    beds: [String],
+  },
+  { timestamps: true }
+);
 
 const Rooms = mongoose.model("room", roomSchema);
 

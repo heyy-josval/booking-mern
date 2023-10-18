@@ -10,8 +10,6 @@ const getRooms = async (req, res) => {
       });
     }
 
-    console.log(rooms);
-
     return res.status(200).json(rooms);
   } catch (error) {
     return res.status(500).json();
@@ -34,35 +32,57 @@ const getRoom = async (req, res) => {
 };
 
 const createRoom = async (req, res) => {
-  const { title, description, size, price, rooms, adults, children, bed } =
-    req.body;
+  const {
+    hotel,
+    title,
+    description,
+    size,
+    price,
+    rooms,
+    adults,
+    children,
+    beds,
+  } = req.body;
 
-  if (!(title && description && size && price)) {
+  if (
+    !(
+      hotel &&
+      title &&
+      description &&
+      size &&
+      price &&
+      rooms &&
+      adults &&
+      children &&
+      beds
+    )
+  ) {
     return res.status(400).json({ message: "All data is required" });
   }
 
   const existingRoom = await Rooms.findOne({
+    hotel,
     title,
     size,
     rooms,
     price,
     adults,
     children,
-    bed,
+    beds,
   });
 
   if (existingRoom) {
     return res.status(400).json({ message: "This room already is exists" });
   }
   const newRoom = new Rooms({
+    hotel,
     title,
-    description,
     size,
-    adults,
-    children,
-    bed,
     rooms,
     price,
+    adults,
+    children,
+    beds,
   });
 
   const roomCreated = await newRoom.save();

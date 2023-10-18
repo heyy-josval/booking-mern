@@ -1,23 +1,14 @@
 import { Stack } from "@mui/material";
 import BottombarButton from "./BottombarButton";
-import {
-  AirlineSeatIndividualSuite,
-  AirportShuttle,
-  AutoAwesome,
-  Flight,
-  TimeToLeave,
-} from "@mui/icons-material";
+import { Bookmark, Hotel } from "@mui/icons-material";
 
 const buttons = [
   {
     text: "Habitaciones",
-    link: "/hotels",
-    icon: <AirlineSeatIndividualSuite />,
+    link: "/rooms",
+    icon: <Hotel />,
   },
-  { text: "Vuelos", link: "", icon: <Flight /> },
-  { text: "Renta de carros", link: "", icon: <TimeToLeave /> },
-  { text: "Atracciones", link: "", icon: <AutoAwesome /> },
-  { text: "Taxi a aeropuerto", link: "", icon: <AirportShuttle /> },
+  { text: "Reservas", link: "/bookings", icon: <Bookmark /> },
 ];
 
 export default function Bottombar({ direction }) {

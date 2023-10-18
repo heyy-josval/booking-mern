@@ -1,8 +1,8 @@
 import { Route } from "wouter";
 import {
   Home,
-  Hotel,
-  Hotels,
+  Room,
+  Rooms,
   Booking,
   Bookings,
   Profile,
@@ -17,8 +17,8 @@ import BackButton from "./components/BackButton";
 const routes = [
   { path: "/", component: Home },
   { path: "/profile", component: Profile },
-  { path: "/hotels", component: Hotels },
-  { path: "/hotels/:id", component: Hotel },
+  { path: "/rooms", component: Rooms },
+  { path: "/rooms/:id", component: Room },
   { path: "/bookings", component: Bookings },
   { path: "/bookings/:id", component: Booking },
   { path: "/bookings/:id", component: Booking },
