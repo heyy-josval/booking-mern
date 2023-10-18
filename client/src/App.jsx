@@ -1,6 +1,8 @@
 import { Route } from "wouter";
 import {
   Home,
+  Hotels,
+  Hotel,
   Room,
   Rooms,
   Booking,
@@ -24,6 +26,8 @@ const routes = [
   { path: "/bookings/:id", component: Booking },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
+  { path: "/hotels", component: Hotels },
+  { path: "/hotel", component: Hotel },
 ];
 
 const excludeNavbar = ["/login", "/register"];
