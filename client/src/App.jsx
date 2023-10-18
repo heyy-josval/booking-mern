@@ -27,7 +27,7 @@ const routes = [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
   { path: "/hotels", component: Hotels },
-  { path: "/hotel", component: Hotel },
+  { path: "/hotels/:id", component: Hotel },
 ];
 
 const excludeNavbar = ["/login", "/register"];
