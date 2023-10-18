@@ -6,12 +6,23 @@ import {
   AutoAwesome,
   AirportShuttle,
 } from "@mui/icons-material";
+import { Link } from "wouter";
 
 export default function Navbar() {
   return (
     <div style={{ width: "100%" }}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <h2 style={{ letterSpacing: "2px" }}>RESERVAS JOSVAL</h2>
+        <Link
+          href="/"
+          style={{
+            textDecoration: "none",
+            color: "#90caf9",
+          }}
+        >
+          <h2 style={{ letterSpacing: "2px", cursor: "pointer" }}>
+            RESERVAS JOSVAL
+          </h2>
+        </Link>
         <Stack direction="row" spacing={2}>
           <Button size="large" variant="contained">
             Register
@@ -27,7 +38,12 @@ export default function Navbar() {
           variant="outlined"
           startIcon={<AirlineSeatIndividualSuite />}
         >
-          Estancias
+          <Link
+            href="/hotels"
+            style={{ textDecoration: "none", color: "#90caf9" }}
+          >
+            Estancias
+          </Link>
         </Button>
         <Button size="medium" variant="outlined" startIcon={<Flight />}>
           Vuelos
