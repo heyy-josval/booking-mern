@@ -3,7 +3,7 @@ export default function Hotel({ params: { id } }) {
   // console.log(params);
   return (
     <div>
-      <h1>Hotel</h1>
+      <h1>Room</h1>
       {id}
     </div>
   );
