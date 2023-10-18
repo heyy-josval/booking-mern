@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
       .json({ message: "You dont have permission for this" });
   }
 
-  return res.status(500).json({ message: "Permission error" });
+  return res.status(500).json({ message: "Only admins" });
 });
 
 module.exports = app;
