@@ -31,6 +31,21 @@ const getRoom = async (req, res) => {
   }
 };
 
+const getRoomByHotelId = async (req, res) => {
+  const { hotelId } = req.params;
+  // console.log(id);
+  try {
+    const room = await Rooms.find({ hotel: hotelId }).exec();
+    // console.log(room);
+    if (!room) {
+      return res.status(404).json({ message: "This room not exists" });
+    }
+    res.status(200).json(room);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 const createRoom = async (req, res) => {
   const {
     hotel,
@@ -153,4 +168,11 @@ const updateRoom = async (req, res) => {
   }
 };
 
-module.exports = { getRooms, getRoom, createRoom, deleteRoom, updateRoom };
+module.exports = {
+  getRooms,
+  getRoom,
+  getRoomByHotelId,
+  createRoom,
+  deleteRoom,
+  updateRoom,
+};

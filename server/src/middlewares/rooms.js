@@ -6,7 +6,7 @@ let userAllowedMethods = ["GET"];
 
 app.use(function (req, res, next) {
   const { user, method } = req;
-  // console.log(user);
+  console.log(user);
   // console.log(method);
 
   // PARA USUARIO LOGUEADO

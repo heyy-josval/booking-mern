@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useAxios } from "../utils";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Grid } from "@mui/material";
+import HotelCard from "../components/Hotel/HotelCard";
+import { useLocation } from "wouter";
 
 const Hotels = () => {
   const [hotels, setHotels] = useState([]);
   const [exists, setExists] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
+  const [location, setLocation] = useLocation();
+
   useEffect(() => {
     const fetchData = async () => {
       const { data, status, exists } = await useAxios("/hotels", {}, "get");
-      console.log(data, status, exists);
+      // console.log(data, status, exists);
       setHotels(data);
-      setExists(exists);
+      if (data) {
+        if (data.length > 0) {
+          setExists(exists);
+        }
+      }
     };
     fetchData();
     setLoaded(true);
@@ -36,41 +36,20 @@ const Hotels = () => {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 1, sm: 2, md: 4 }}
             >
-              {hotels.map((hotel) => (
-                <Grid key={hotel._id} item xs={1} sm={1} md={1}>
-                  <Card
-                    variant="elevation"
-                    sx={{ maxWidth: 345 }}
-                    style={{ padding: 5 }}
-                  >
-                    <CardMedia
-                      sx={{ height: 140 }}
-                      image="/hotel.jpg"
-                      title="Hotel"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {hotel.title}
-                      </Typography>
-                      <Typography
-                        sx={{ fontSize: 14 }}
-                        color="text.secondary"
-                        gutterBottom
-                      >
-                        {hotel.country} - {hotel.district}
-                      </Typography>
-                      <Typography variant="body2" color="text.primary">
-                        {hotel.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" variant="contained">
-                        Reservar
-                      </Button>
-                      <Button size="small">Ver</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
+              {hotels.map((hotel, pos) => (
+                <HotelCard
+                  key={pos}
+                  title={hotel.title}
+                  description={hotel.description}
+                  country={hotel.country}
+                  district={hotel.district}
+                  imageSrc="/hotel.jpg"
+                  textSecondButton="Ver Hotel"
+                  textFirstButton="Reservar"
+                  handleSecondButton={() => {
+                    setLocation(`/hotels/${hotel._id}`);
+                  }}
+                />
               ))}
             </Grid>
           </ul>

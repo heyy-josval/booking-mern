@@ -8,12 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function HotelCard({
+export default function RoomCard({
   key,
   imageSrc,
   title,
   country,
-  district,
+  price,
   description,
   textFirstButton,
   textSecondButton,
@@ -28,8 +28,16 @@ export default function HotelCard({
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
+          <Typography
+            variant="h5"
+            color="text.secondary"
+            gutterBottom
+            component="div"
+          >
+            S/. {price}
+          </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {country} - {district}
+            {country}
           </Typography>
           <Typography variant="body2" color="text.primary">
             {description}
