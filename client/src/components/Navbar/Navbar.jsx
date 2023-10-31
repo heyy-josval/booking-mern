@@ -9,11 +9,7 @@ export default function Navbar() {
   return (
     <div style={{ width: "100%" }}>
       <Topbar
-        logo={
-          <h2 style={{ letterSpacing: "2px", cursor: "pointer" }}>
-            RESERVAS JOSVAL
-          </h2>
-        }
+        logo={<h2 style={{ cursor: "pointer" }}>RESERVAS JOSVAL</h2>}
         handleFirstButton={() => {
           setLocation("/register");
         }}

@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Stack,
   Typography,
 } from "@mui/material";
 
@@ -14,6 +15,7 @@ export default function RoomCard({
   title,
   country,
   price,
+  beds,
   description,
   textFirstButton,
   textSecondButton,
@@ -42,6 +44,32 @@ export default function RoomCard({
           <Typography variant="body2" color="text.primary">
             {description}
           </Typography>
+          <Typography
+            color="text.secondary"
+            gutterBottom
+            component="div"
+            marginTop={2}
+          >
+            Camas disponibles:
+          </Typography>
+          <Grid
+            container
+            spacing={{ xs: 1, md: 1 }}
+            columns={{ xs: 1, sm: 2, md: 2 }}
+          >
+            {beds.map((bed) => (
+              <Grid item>
+                <Typography
+                  color="#212121"
+                  bgcolor="text.secondary"
+                  padding={1}
+                  borderRadius={2}
+                >
+                  {bed}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
         </CardContent>
         <CardActions>
           <Button size="small" variant="contained" onClick={handleFirstButton}>

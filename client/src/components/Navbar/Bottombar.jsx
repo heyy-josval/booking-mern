@@ -3,7 +3,7 @@ import BottombarButton from "./BottombarButton";
 import { Bookmark, Hotel, Bed } from "@mui/icons-material";
 
 const buttons = [
-  { text: "Hoteles", link: "/hotels", icon: <Bed /> },
+  // { text: "Hoteles", link: "/hotels", icon: <Bed /> },
   {
     text: "Habitaciones",
     link: "/rooms",

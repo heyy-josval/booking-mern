@@ -17,7 +17,7 @@ import { useLocation } from "wouter";
 import BackButton from "./components/BackButton";
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", component: Hotels },
   { path: "/profile", component: Profile },
   { path: "/rooms", component: Rooms },
   { path: "/rooms/:id", component: Room },
@@ -26,7 +26,7 @@ const routes = [
   { path: "/bookings/:id", component: Booking },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/hotels", component: Hotels },
+  // { path: "/hotels", component: Hotels },
   { path: "/hotels/:id", component: Hotel },
 ];
 
